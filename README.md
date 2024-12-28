@@ -1,2 +1,2 @@
 # LinearInterpolation
-In the process of condensed matter calculation, it is necessary to extend the Weyl point path. This program can be used to quickly calculate the straight line connecting the Weyl points.
+In the process of condensed matter calculation, it is necessary to extend the Weyl point path. This program can be used to quickly calculate the straight line connecting the Weyl points. By customizing the zoom scale, the two endpoints of the line with different extension distances can be obtained. The output format has been set to be consistent with the wanniertools standard input file format.
