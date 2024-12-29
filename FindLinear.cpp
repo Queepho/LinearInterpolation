@@ -5,15 +5,15 @@ using namespace std;
 
 double Y[3] = {0.5,0.5,0};
 
-double Weyl_red[3] = {0.50004506,0.49995603,0.00000844};
-double Weyl_blue[3] = {0.49996049,0.50004928,-0.00002276};
+double Weyl_red[3] = {0.49939352,0.49938880,0.00111321};
+double Weyl_blue[3] = {0.50061770,0.50061585,-0.00114061};
 
 //K1 K2 K3 are Reciprocal Vectors (Ang^-1) only active for One_WeylLine
 double K1[3] = {1.418326,0.436757,-0.140816};
 double K2[3] = {-1.418326,0.436757,-0.140816};
 double K3[3] = {0.000000,0.000000,0.629151};
 
-double Scale = 3.56;
+double Scale = 2;
 
 int LineType = 1; //(1 for Two_WeylLine; 2 for One_WeylLine)
 int KAlong = 3; //(1 for K1, 2 for K2, 3 for K3) only active for One_WeylLine
@@ -124,9 +124,9 @@ void WeylLine()
 
 	if(trigger != 3)
 	{
-		double diff_x = abs(Scale * (Y[0] - Weyl_red[0]));
-		double diff_y = abs(Scale * (Y[1] - Weyl_red[1]));
-		double diff_z = abs(Scale * (Y[2] - Weyl_red[2]));
+		double diff_x = (Scale * (Y[0] - Weyl_red[0]));
+		double diff_y = (Scale * (Y[1] - Weyl_red[1]));
+		double diff_z = (Scale * (Y[2] - Weyl_red[2]));
 
 		cout<<"The diff_x "<<fixed<<setprecision(8)<<diff_x<<endl;
 		cout<<"The diff_y "<<fixed<<setprecision(8)<<diff_y<<endl;
