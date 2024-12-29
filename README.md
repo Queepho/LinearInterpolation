@@ -5,3 +5,7 @@ In the process of condensed matter calculation, it is necessary to extend the We
 2. Provides customization of the output format of the surface state path for both 100 and 001 surface states.
 
 Updated on December 29
+
+1. Fixed the positive and negative issues in Arc settings. Now the positive and negative are related to the path of the setting.
+
+Updated on December 30
