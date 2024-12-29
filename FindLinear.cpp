@@ -5,22 +5,26 @@ using namespace std;
 
 double Y[3] = {0.5,0.5,0};
 
-double Weyl_red[3] = {0.49933611,0.49933113,0.00122475};
-double Weyl_blue[3] = {0.50067533,0.50067367,-0.00125412};
+double Weyl_red[3] = {0.50004506,0.49995603,0.00000844};
+double Weyl_blue[3] = {0.49996049,0.50004928,-0.00002276};
 
 //K1 K2 K3 are Reciprocal Vectors (Ang^-1) only active for One_WeylLine
 double K1[3] = {1.418326,0.436757,-0.140816};
 double K2[3] = {-1.418326,0.436757,-0.140816};
 double K3[3] = {0.000000,0.000000,0.629151};
 
-double Scale = 0.003;
+double Scale = 3.56;
 
-int LineType = 2; //(1 for Two_WeylLine; 2 for One_WeylLine)
+int LineType = 1; //(1 for Two_WeylLine; 2 for One_WeylLine)
 int KAlong = 3; //(1 for K1, 2 for K2, 3 for K3) only active for One_WeylLine
 int WeylWhich = 1; //(1 for red, 2 for blue)
 
 
-int trigger = 3; //(2 for Surface; 3 for Bulk)
+int trigger = 1; //(1 for Surface(100); 2 for Surface(001); 3 for Bulk)
+
+
+double Left_point[3] = {0,0,0};
+double Right_point[3] = {0,0,0};
 //——————————————————————————————————————————————————————————————————————————————————————————
 
 void Find_Point(double* Weyl ,int a)
@@ -40,21 +44,17 @@ void Find_Point(double* Weyl ,int a)
 	
 }
 
-void WeylLine()
+void Display_A(int StartI = 0, int EndI = 3)
 {
-	double Left_point[3] = {0,0,0};
-	double Right_point[3] = {0,0,0};
-	Find_Point(Left_point,0);
-	Find_Point(Right_point,1);
 
 	cout<<"M ";
-	for(int i=0;i<trigger;i++)
+	for(int i = StartI;i<EndI;i++)
 	{
 		cout<< fixed << setprecision(8) << Left_point[i] << " ";
 
 	}
 	cout<<"R ";
-	for(int i=0;i<trigger;i++)
+	for(int i = StartI;i<EndI;i++)
 	{
 		cout<< fixed << setprecision(8) << Weyl_red[i] << " ";
 
@@ -63,13 +63,13 @@ void WeylLine()
 
 
 	cout<<"R ";
-	for(int i=0;i<trigger;i++)
+	for(int i = StartI;i<EndI;i++)
 	{
 		cout<< fixed << setprecision(8) << Weyl_red[i] << " ";
 
 	}
 	cout<<"Y ";
-	for(int i=0;i<trigger;i++)
+	for(int i = StartI;i<EndI;i++)
 	{
 		cout<< fixed << setprecision(8) << Y[i] << " ";
 
@@ -78,13 +78,13 @@ void WeylLine()
 
 
 	cout<<"Y ";
-	for(int i=0;i<trigger;i++)
+	for(int i = StartI;i<EndI;i++)
 	{
 		cout<< fixed << setprecision(8) << Y[i] << " ";
 
 	}
 	cout<<"B ";
-	for(int i=0;i<trigger;i++)
+	for(int i = StartI;i<EndI;i++)
 	{
 		cout<< fixed << setprecision(8) << Weyl_blue[i] << " ";
 
@@ -94,19 +94,35 @@ void WeylLine()
 
 
 	cout<<"B ";
-	for(int i=0;i<trigger;i++)
+	for(int i = StartI;i<EndI;i++)
 	{
 		cout<< fixed << setprecision(8) << Weyl_blue[i] << " ";
 
 	}
 	cout<<"N ";
-	for(int i=0;i<trigger;i++)
+	for(int i = StartI;i<EndI;i++)
 	{
 		cout<< fixed << setprecision(8) << Right_point[i] << " ";
 	}
 	cout<<endl;
+}
 
-	if(trigger == 2)
+void WeylLine()
+{
+
+	Find_Point(Left_point,0);
+	Find_Point(Right_point,1);
+
+	if((trigger == 2) && (trigger == 3))
+	{
+		Display_A(0,3);
+	}else if(trigger == 1)
+	{
+		Display_A(1,3);
+	}
+	
+
+	if(trigger != 3)
 	{
 		double diff_x = abs(Scale * (Y[0] - Weyl_red[0]));
 		double diff_y = abs(Scale * (Y[1] - Weyl_red[1]));
