@@ -7,5 +7,6 @@ In the process of condensed matter calculation, it is necessary to extend the We
 Updated on December 29
 
 1. Fixed the positive and negative issues in Arc settings. Now the positive and negative are related to the path of the setting.
+2. Fixed the bug of trigger.
 
 Updated on December 30
