@@ -5,15 +5,15 @@ using namespace std;
 
 double Y[3] = {0.5,0.5,0};
 
-double Weyl_red[3] = {0.49939352,0.49938880,0.00111321};
-double Weyl_blue[3] = {0.50061770,0.50061585,-0.00114061};
+double Weyl_red[3] = {0.49954617,0.49954160,0.00083953};
+double Weyl_blue[3] = {0.50046554,0.50046339,-0.00087117};
 
 //K1 K2 K3 are Reciprocal Vectors (Ang^-1) only active for One_WeylLine
 double K1[3] = {1.418326,0.436757,-0.140816};
 double K2[3] = {-1.418326,0.436757,-0.140816};
 double K3[3] = {0.000000,0.000000,0.629151};
 
-double Scale = 2;
+double Scale = 2.8;
 
 int LineType = 1; //(1 for Two_WeylLine; 2 for One_WeylLine)
 int KAlong = 3; //(1 for K1, 2 for K2, 3 for K3) only active for One_WeylLine
@@ -113,7 +113,7 @@ void WeylLine()
 	Find_Point(Left_point,0);
 	Find_Point(Right_point,1);
 
-	if((trigger == 2) && (trigger == 3))
+	if((trigger == 2) || (trigger == 3))
 	{
 		Display_A(0,3);
 	}else if(trigger == 1)
