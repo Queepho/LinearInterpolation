@@ -5,27 +5,70 @@ using namespace std;
 
 double Y[3] = {0.5,0.5,0};
 
-double Weyl_red[3] = {0.49954617,0.49954160,0.00083953};
-double Weyl_blue[3] = {0.50046554,0.50046339,-0.00087117};
+double Weyl_red[3] = {0.46606375,0.46605984,0.44404435};
+double Weyl_blue[3] = {-0.46606067,-0.46605728,-0.44402812};
+int Plusone = 2; //(0 for dont plus, 1 for plus one on red, 2 for plus one on blue)
+int PlusZ = 1; //(o for dont plus Z, 1 for plus Z)
 
 //K1 K2 K3 are Reciprocal Vectors (Ang^-1) only active for One_WeylLine
 double K1[3] = {1.418326,0.436757,-0.140816};
 double K2[3] = {-1.418326,0.436757,-0.140816};
 double K3[3] = {0.000000,0.000000,0.629151};
 
-double Scale = 2.8;
+double Scale = 1.2;
 
 int LineType = 1; //(1 for Two_WeylLine; 2 for One_WeylLine)
 int KAlong = 3; //(1 for K1, 2 for K2, 3 for K3) only active for One_WeylLine
 int WeylWhich = 1; //(1 for red, 2 for blue)
 
 
-int trigger = 1; //(1 for Surface(100); 2 for Surface(001); 3 for Bulk)
+int trigger = 2; //(1 for Surface(100); 2 for Surface(001); 3 for Bulk)
 
-
+//——————————————————————————————————————————————————————————————————————————————————————————
+//Initial Settings
 double Left_point[3] = {0,0,0};
 double Right_point[3] = {0,0,0};
 //——————————————————————————————————————————————————————————————————————————————————————————
+void PlusRed(double* Weyl, int Plusone, int PlusZ)
+{
+	if(Plusone == 1 && PlusZ == 1)
+	{
+		Weyl[0] = Weyl[0] + 1;
+		Weyl[1] = Weyl[1] + 1;
+		Weyl[2] = Weyl[2] + 1;
+		cout<< "RedWeyl has been plus one, with Z"<< endl;
+	}else if(Plusone == 1 && PlusZ == 0)
+	{
+		Weyl[0] = Weyl[0] + 1;
+		Weyl[1] = Weyl[1] + 1;
+		cout<< "RedWeyl has been plus one"<< endl;
+	}
+	else
+	{
+		cout<< "RedWeyl not plus"<< endl;
+	}
+}
+
+void PlusBlue(double* Weyl, int Plusone, int PlusZ)
+{
+	if(Plusone == 2 && PlusZ == 1)
+	{
+		Weyl[0] = Weyl[0] + 1;
+		Weyl[1] = Weyl[1] + 1;
+		Weyl[2] = Weyl[2] + 1;
+		cout<< "BlueWeyl has been plus one, with Z"<< endl;
+	}else if(Plusone == 2 && PlusZ == 0)
+	{
+		Weyl[0] = Weyl[0] + 1;
+		Weyl[1] = Weyl[1] + 1;
+		cout<< "BlueWeyl has been plus one"<< endl;
+	}
+	else
+	{
+		cout<< "BlueWeyl not plus"<< endl;
+	}
+}
+
 
 void Find_Point(double* Weyl ,int a)
 {
@@ -113,12 +156,18 @@ void WeylLine()
 	Find_Point(Left_point,0);
 	Find_Point(Right_point,1);
 
-	if((trigger == 2) || (trigger == 3))
+	if(trigger == 3)
 	{
 		Display_A(0,3);
 	}else if(trigger == 1)
 	{
 		Display_A(1,3);
+	}else if(trigger == 2)
+	{
+		Display_A(0,2);
+	}else
+	{
+		cout<<"trigger is wrong"<<endl;
 	}
 	
 
@@ -232,6 +281,9 @@ void KLine()
 
 int main()
 {
+
+	PlusRed(Weyl_red, Plusone, PlusZ);
+	PlusBlue(Weyl_blue, Plusone, PlusZ);
 
 	if(LineType == 1)
 	{
